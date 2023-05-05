@@ -1,13 +1,13 @@
-package com.dex.hellowo;
+package com.dex.hellowatson;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class HelloWoApplication {
+public class HelloWatsonApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(HelloWoApplication.class, args);
+		SpringApplication.run(HelloWatsonApplication.class, args);
 	}
 
 }

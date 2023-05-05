@@ -1,4 +1,4 @@
-springdoc:
-  api-docs:
-    enabled: true
-    path: api-docs
+openapi:
+  id: hello-watson
+  title: Hello Watson
+  description: Simple Hello World API
