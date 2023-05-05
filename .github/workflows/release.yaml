@@ -39,7 +39,7 @@ jobs:
           cp /tmp/Chart.yaml chart/hello-watson/Chart.yaml
           
           cat build.gradle | \
-            sed "s/version = .*/version = '${TAG_NAME}'/g" |
+            sed "s/version = .*/version = '${TAG_NAME}'/g" \
             > /tmp/build.gradle
           cp /tmp/build.gradle build.gradle
           
