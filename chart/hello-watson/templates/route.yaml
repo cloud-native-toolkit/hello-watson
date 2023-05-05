@@ -1,0 +1,18 @@
+{{- if .Values.route.enabled }}
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: {{ include "hello-watson.name" . }}
+  labels:
+    {{- include "hello-watson.labels" . | nindent 4 }}
+spec:
+  port:
+    targetPort: http
+  to:
+    kind: Service
+    name: {{ include "hello-watson.fullname" . }}
+    weight: 100
+  tls:
+    termination: {{ .Values.route.termination | default "edge" }}
+    insecureEdgeTerminationPolicy: {{ .Values.route.insecureEdgeTerminationPolicy | default "Redirect" }}
+{{- end }}
