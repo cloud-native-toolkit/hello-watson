@@ -1,6 +1,8 @@
 package com.dex.hellowatson.controllers;
 
+import com.dex.hellowatson.models.SimpleResponse;
 import io.swagger.v3.oas.annotations.Operation;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,9 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin()
 public class HealthController {
 
-    @GetMapping("/health")
+    @GetMapping(value = "/health", produces = {MediaType.APPLICATION_JSON_VALUE})
     @Operation(summary = "Simple health response")
-    public String health() {
-        return "OK";
+    public SimpleResponse<String> health() {
+        return new SimpleResponse<>("OK");
     }
 }
