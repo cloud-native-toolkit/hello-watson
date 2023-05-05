@@ -1,8 +1,10 @@
 package com.dex.hellowatson.config;
 
+import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.security.SecurityRequirement;
+import io.swagger.v3.oas.models.security.SecurityScheme;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.info.BuildProperties;
 import org.springframework.context.annotation.Bean;
@@ -32,7 +34,12 @@ public class OpenApiConfiguration {
         return new OpenAPI()
                 .info(buildOpenApiInfo())
                 // TODO fix
-                .security(List.of(new SecurityRequirement().addList("basic_auth")));
+                .security(List.of(new SecurityRequirement().addList("basic_auth")))
+                .components(new Components()
+                        .addSecuritySchemes(
+                                "basic_auth",
+                                new SecurityScheme().type(SecurityScheme.Type.HTTP).scheme("basic")))
+                ;
     }
 
     protected Info buildOpenApiInfo() {
