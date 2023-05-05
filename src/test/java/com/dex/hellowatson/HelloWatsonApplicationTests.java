@@ -1,10 +1,10 @@
-package com.dex.hellowo;
+package com.dex.hellowatson;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class HelloWoApplicationTests {
+class HelloWatsonApplicationTests {
 
 	@Test
 	void contextLoads() {

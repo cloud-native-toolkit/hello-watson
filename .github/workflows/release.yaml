@@ -28,30 +28,37 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Update chart version
-        id: update-chart
+        id: update-version
         run: |
           TAG_NAME=$(echo "${{ steps.create-release.outputs.tag_name }}" | sed "s/v//g")
+          
           cat chart/hello-watson/Chart.yaml | \
             sed "s/appVersion:.*/appVersion: \"${TAG_NAME}\"/g" | \
             sed "s/version:.*/version: \"${TAG_NAME}\"/g" \
             > /tmp/Chart.yaml
           cp /tmp/Chart.yaml chart/hello-watson/Chart.yaml
           
+          cat build.gradle | \
+            sed -E "s/version = .*/version = '${TAG_NAME}'/g" |
+            > /tmp/build.gradle
+          cp /tmp/build.gradle build.gradle
+          
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add chart/hello-watson/Chart.yaml
+          
+          git add chart/hello-watson/Chart.yaml build.gradle
           
           CHANGED=""
           if [[ `git status --porcelain` ]]; then
             CHANGED="true"
-            git commit -m "Update appVersion to ${TAG_NAME} in chart"
+            git commit -m "Update version to ${TAG_NAME}"
           fi
           
           echo "changed=$CHANGED" >> $GITHUB_OUTPUT
 
       - name: Push changes
         uses: ad-m/github-push-action@master
-        if: ${{ steps.update-chart.outputs.changed == 'true' }}
+        if: ${{ steps.update-version.outputs.changed == 'true' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
