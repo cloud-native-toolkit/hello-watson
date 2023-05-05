@@ -2,6 +2,16 @@ apiVersion: v1
 entries:
   hello-watson:
   - apiVersion: v2
+    appVersion: 0.2.3
+    created: "2023-05-05T16:47:01.546444803Z"
+    description: A Helm chart for Kubernetes
+    digest: 7483b66fd74161679ddf397bdc030ec911810851154d5b847a301822806f33ee
+    name: hello-watson
+    type: application
+    urls:
+    - https://github.com/cloud-native-toolkit/hello-watson/releases/download/v0.2.3/hello-watson-0.2.3.tgz
+    version: 0.2.3
+  - apiVersion: v2
     appVersion: 0.2.2
     created: "2023-05-05T16:26:45.18908928Z"
     description: A Helm chart for Kubernetes
@@ -51,4 +61,4 @@ entries:
     urls:
     - https://github.com/cloud-native-toolkit/hello-watson/releases/download/v0.1.1/hello-watson-0.1.1.tgz
     version: 0.1.1
-generated: "2023-05-05T16:26:45.188211275Z"
+generated: "2023-05-05T16:47:01.545432295Z"
